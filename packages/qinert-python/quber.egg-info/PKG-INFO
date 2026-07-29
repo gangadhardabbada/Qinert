@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: quber
+Version: 1.0.0
+Summary: Official Python client SDK for QPS/1.0
+Author-email: Quber <hello@quber.io>
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.24.0
+Requires-Dist: pydantic>=2.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: respx>=0.20.0; extra == "dev"
+
+# Quber Python SDK
+
+The official Python client SDK for QPS/1.0 (Quber Protocol Specification).
+
+## Installation
+
+```bash
+pip install .
+```
+
+## Features
+- **Sync & Async**: Provides both `QuberClient` and `AsyncQuberClient` natively using `httpx`.
+- **Pydantic Models**: Requests and responses are strongly typed and validated using Pydantic.
+- **Secure**: Strictly adheres to the QPS/1.0 zeroization policy, securely generating HMAC proofs in memory and immediately destroying symmetric quantum-derived keys.
+- **Context Managers**: Cleanly manage connection pools and automatic session tear-downs.
+
+## Basic Usage
+
+```python
+from quber import QuberClient, QuberError
+
+try:
+    with QuberClient(base_url="http://localhost:8000") as quber:
+        
+        # 1. Establish the quantum key via BB84
+        quber.handshake(client_id="alice")
+
+        # 2. Perform the HMAC-SHA-256 challenge
+        session = quber.authenticate()
+
+        print("Success! Token:", session.payload.session_token)
+
+except QuberError as e:
+    print(f"Protocol Error: {e.code} - {e.message}")
+```
+
+## Async Usage
+
+```python
+import asyncio
+from quber import AsyncQuberClient
+
+async def main():
+    async with AsyncQuberClient(base_url="http://localhost:8000") as quber:
+        await quber.handshake(client_id="alice")
+        session = await quber.authenticate()
+        print(session.payload.session_token)
+
+asyncio.run(main())
+```

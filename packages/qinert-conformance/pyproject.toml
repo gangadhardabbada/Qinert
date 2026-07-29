@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qinert-conformance"
+version = "1.0.0"
+description = "QPS/1.0 Conformance Test Suite"
+requires-python = ">=3.9"
+dependencies = [
+    "httpx>=0.24.0",
+    "colorama>=0.4.6"
+]

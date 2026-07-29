@@ -1,0 +1,105 @@
+@import "tailwindcss";
+@plugin "./heroui-plugin.js";
+@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+
+/* Qinert Theme Variables - Afrofuturistic Quantum Identity */
+@theme {
+  --color-primary-50: #e5ecff;
+  --color-primary-100: #ccdaff;
+  --color-primary-200: #99b5ff;
+  --color-primary-300: #6690ff;
+  --color-primary-400: #336bff;
+  --color-primary-500: #0F62FE; /* Quantum Blue */
+  --color-primary-600: #0050e6;
+  --color-primary-700: #003eb3;
+  --color-primary-800: #002d80;
+  --color-primary-900: #001b4d;
+
+  --color-secondary-50: #f4ecff;
+  --color-secondary-100: #e9d9ff;
+  --color-secondary-200: #d4b3ff;
+  --color-secondary-300: #be8cff;
+  --color-secondary-400: #a966ff;
+  --color-secondary-500: #8A3FFC; /* Energy Purple */
+  --color-secondary-600: #7425e6;
+  --color-secondary-700: #5d15b3;
+  --color-secondary-800: #460980;
+  --color-secondary-900: #2e044d;
+
+  --color-accent-50: #efebff;
+  --color-accent-100: #dfd6ff;
+  --color-accent-200: #beadff;
+  --color-accent-300: #9e85ff;
+  --color-accent-400: #7e5cff;
+  --color-accent-500: #5E2BFF; /* Deep Violet */
+  --color-accent-600: #4614e6;
+  --color-accent-700: #350fa3;
+  --color-accent-800: #250a73;
+  --color-accent-900: #150542;
+
+  --color-background-main: #05060A; /* Primary Background */
+  --color-background-secondary: #0B0D10; /* Secondary Background */
+  --color-surface: #161A22;
+  
+  --color-text-main: #F4F4F4; /* White */
+  --color-text-muted: #C6C6C6; /* Soft Silver */
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-border-glow: rgba(138, 63, 252, 0.3); /* Energy Purple Glow */
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  @apply font-sans;
+  background-color: var(--color-background-main);
+  color: var(--color-text-main);
+}
+
+/* Advanced Quantum Material Utilities */
+.quantum-card {
+  background: linear-gradient(145deg, rgba(22, 26, 34, 0.8) 0%, rgba(11, 13, 16, 0.9) 100%);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.quantum-card:hover {
+  border-color: var(--color-border-glow);
+  box-shadow: 0 0 20px rgba(94, 43, 255, 0.15), inset 0 0 10px rgba(15, 98, 254, 0.1);
+}
+
+/* Hexagonal Pattern Utility */
+.bg-hex-pattern {
+  background-color: var(--color-background-main);
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 17.3205081l-20 11.5470054L0 17.3205081V-5.7735027L20 -17.3205081l20 11.5470054zM20 51.9615242l-20 11.5470054V40.4145188L20 28.8675135l20 11.5470054V63.5085296z' fill='rgba(255,255,255,0.015)' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* Minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-500);
+}
