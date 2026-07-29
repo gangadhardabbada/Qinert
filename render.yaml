@@ -10,9 +10,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.12.0
       - key: DATABASE_URL
-        fromDatabase:
-          name: quber-db
-          property: connectionString
+        sync: false
       - key: QISKIT_IBM_TOKEN
         sync: false
 
@@ -29,8 +27,3 @@ services:
           type: web
           name: quber-backend
           property: host
-
-databases:
-  - name: quber-db
-    databaseName: quber
-    user: quber
