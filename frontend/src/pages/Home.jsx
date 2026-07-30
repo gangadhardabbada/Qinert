@@ -4,11 +4,12 @@ import HowItWorksSection from "../components/home/HowItWorksSection";
 import DeveloperExperienceSection from "../components/home/DeveloperExperienceSection";
 import TechStackSection from "../components/home/TechStackSection";
 import CTASection from "../components/home/CTASection";
+import StorytellingTour from "../components/home/StorytellingTour";
 import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full bg-hex-pattern min-h-screen text-text-main font-sans selection:bg-secondary-500/30 relative">
+    <div className="flex flex-col w-full bg-grid-pattern min-h-screen text-text-main font-sans selection:bg-primary-500/30 relative">
       {/* Global Ambient Kinetic Energy Particles */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] bg-[radial-gradient(circle_at_center,rgba(15,98,254,0.03)_0%,rgba(94,43,255,0.02)_40%,transparent_70%)] rounded-full mix-blend-screen" />
@@ -51,6 +52,7 @@ export default function Home() {
         <TechStackSection />
         <CTASection />
       </div>
+      <StorytellingTour />
     </div>
   );
 }

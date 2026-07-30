@@ -15,7 +15,7 @@ from app.core.exceptions import (
     validation_exception_handler
 )
 from app.middleware.request_context import RequestContextMiddleware
-from app.routers import health, auth, protocol, quantum, experiments
+from app.routers import health, auth, protocol, quantum, experiments, qonsole
 from fastapi.exceptions import RequestValidationError, HTTPException
 from fastapi.responses import JSONResponse
 
@@ -84,6 +84,7 @@ def create_app() -> FastAPI:
     app.include_router(protocol.router, prefix=f"{settings.API_V1_STR}/protocol", tags=["protocol"])
     app.include_router(quantum.router, prefix=f"{settings.API_V1_STR}/quantum", tags=["quantum"])
     app.include_router(experiments.router, prefix=f"{settings.API_V1_STR}/experiments", tags=["experiments"])
+    app.include_router(qonsole.router, prefix=f"{settings.API_V1_STR}/qonsole", tags=["qonsole"])
 
     return app
 

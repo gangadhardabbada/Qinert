@@ -117,13 +117,26 @@ export default function Navbar() {
           </a>
         </NavbarItem>
 
+        {/* Storytelling Mode Entry */}
+        <NavbarItem className="hidden sm:flex">
+          <Button
+            as={Link}
+            to="/?tour=true"
+            size="sm"
+            variant="flat"
+            className="text-text-muted hover:text-primary-500 bg-surface border border-border-subtle hover:border-primary-500/50 transition-all font-mono-data text-xs"
+          >
+            Guided Tour
+          </Button>
+        </NavbarItem>
+
         {/* Authenticate — text link on sm, full button on md+ */}
         <NavbarItem className="hidden sm:flex md:hidden">
           <Link
             to="/authenticate"
-            className="text-sm font-medium text-primary-400 hover:text-primary-300 transition-colors"
+            className="text-sm font-medium text-primary-500 hover:text-primary-400 transition-colors"
           >
-            Authenticate
+            Qonsole
           </Link>
         </NavbarItem>
 
@@ -136,7 +149,7 @@ export default function Navbar() {
             className="hidden md:flex bg-primary-500 hover:bg-primary-400 text-white font-medium rounded-sm px-4 items-center gap-1.5 transition-all hover:shadow-[0_0_20px_rgba(15,98,254,0.35)]"
             endContent={<ArrowRight size={13} aria-hidden="true" />}
           >
-            Start Authentication
+            Qonsole
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -181,7 +194,7 @@ export default function Navbar() {
               endContent={<ArrowRight size={15} aria-hidden="true" />}
               onClick={() => setIsMenuOpen(false)}
             >
-              Start Authentication
+              Qonsole
             </Button>
           </div>
         </div>

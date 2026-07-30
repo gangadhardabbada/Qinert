@@ -2,51 +2,60 @@
 @plugin "./heroui-plugin.js";
 @source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 
-/* Qinert Theme Variables - Afrofuturistic Quantum Identity */
+/* Qinert Theme Variables - macOS / IBM Quantum Aesthetic */
 @theme {
-  --color-primary-50: #e5ecff;
-  --color-primary-100: #ccdaff;
-  --color-primary-200: #99b5ff;
-  --color-primary-300: #6690ff;
-  --color-primary-400: #336bff;
-  --color-primary-500: #0F62FE; /* Quantum Blue */
-  --color-primary-600: #0050e6;
-  --color-primary-700: #003eb3;
-  --color-primary-800: #002d80;
-  --color-primary-900: #001b4d;
+  /* IBM Blue Primary */
+  --color-primary-50: #edf5ff;
+  --color-primary-100: #d0e2ff;
+  --color-primary-200: #a6c8ff;
+  --color-primary-300: #78a9ff;
+  --color-primary-400: #4589ff;
+  --color-primary-500: #0f62fe; /* IBM Blue */
+  --color-primary-600: #0043ce;
+  --color-primary-700: #002d9c;
+  --color-primary-800: #001d6c;
+  --color-primary-900: #001141;
 
-  --color-secondary-50: #f4ecff;
-  --color-secondary-100: #e9d9ff;
-  --color-secondary-200: #d4b3ff;
-  --color-secondary-300: #be8cff;
-  --color-secondary-400: #a966ff;
-  --color-secondary-500: #8A3FFC; /* Energy Purple */
-  --color-secondary-600: #7425e6;
-  --color-secondary-700: #5d15b3;
-  --color-secondary-800: #460980;
-  --color-secondary-900: #2e044d;
+  /* Cool Grays / Monochromes for secondary */
+  --color-secondary-50: #f4f4f4;
+  --color-secondary-100: #e0e0e0;
+  --color-secondary-200: #c6c6c6;
+  --color-secondary-300: #a8a8a8;
+  --color-secondary-400: #8d8d8d;
+  --color-secondary-500: #6f6f6f;
+  --color-secondary-600: #525252;
+  --color-secondary-700: #393939;
+  --color-secondary-800: #262626;
+  --color-secondary-900: #161616;
 
-  --color-accent-50: #efebff;
-  --color-accent-100: #dfd6ff;
-  --color-accent-200: #beadff;
-  --color-accent-300: #9e85ff;
-  --color-accent-400: #7e5cff;
-  --color-accent-500: #5E2BFF; /* Deep Violet */
-  --color-accent-600: #4614e6;
-  --color-accent-700: #350fa3;
-  --color-accent-800: #250a73;
-  --color-accent-900: #150542;
+  /* Accents */
+  --color-accent-500: #4589ff; 
 
-  --color-background-main: #05060A; /* Primary Background */
-  --color-background-secondary: #0B0D10; /* Secondary Background */
-  --color-surface: #161A22;
+  /* High contrast background/surface */
+  --color-background-main: #f4f4f4; /* Light mode default or stark white */
+  --color-background-secondary: #ffffff;
+  --color-surface: rgba(255, 255, 255, 0.7);
   
-  --color-text-main: #F4F4F4; /* White */
-  --color-text-muted: #C6C6C6; /* Soft Silver */
-  --color-border-subtle: rgba(255, 255, 255, 0.05);
-  --color-border-glow: rgba(138, 63, 252, 0.3); /* Energy Purple Glow */
+  --color-text-main: #161616;
+  --color-text-muted: #525252;
+  --color-border-subtle: rgba(0, 0, 0, 0.1);
+  --color-border-glow: rgba(15, 98, 254, 0.2);
 
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Dark mode preferences */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-main: #161616;
+    --color-background-secondary: #262626;
+    --color-surface: rgba(38, 38, 38, 0.7);
+    --color-text-main: #f4f4f4;
+    --color-text-muted: #c6c6c6;
+    --color-border-subtle: rgba(255, 255, 255, 0.15);
+    --color-border-glow: rgba(15, 98, 254, 0.4);
+  }
 }
 
 body {
@@ -55,51 +64,64 @@ body {
   color: var(--color-text-main);
 }
 
-/* Advanced Quantum Material Utilities */
-.quantum-card {
-  background: linear-gradient(145deg, rgba(22, 26, 34, 0.8) 0%, rgba(11, 13, 16, 0.9) 100%);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border-subtle);
-  position: relative;
-  overflow: hidden;
+/* Typography utilities */
+.font-mono-data {
+  font-family: var(--font-mono);
 }
 
-.quantum-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-position: center;
-  opacity: 0.5;
-  pointer-events: none;
+/* macOS Glassmorphism / IBM Structural Panels */
+.glass-panel {
+  background: var(--color-surface);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+}
+
+.glass-panel:hover {
+  border-color: var(--color-border-glow);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--color-border-glow);
+}
+
+/* Quantum Material Utilities (Refined) */
+.quantum-card {
+  @apply relative overflow-hidden;
+  background: var(--color-surface);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
 }
 
 .quantum-card:hover {
   border-color: var(--color-border-glow);
-  box-shadow: 0 0 20px rgba(94, 43, 255, 0.15), inset 0 0 10px rgba(15, 98, 254, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--color-border-glow);
 }
 
-/* Hexagonal Pattern Utility */
-.bg-hex-pattern {
-  background-color: var(--color-background-main);
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 17.3205081l-20 11.5470054L0 17.3205081V-5.7735027L20 -17.3205081l20 11.5470054zM20 51.9615242l-20 11.5470054V40.4145188L20 28.8675135l20 11.5470054V63.5085296z' fill='rgba(255,255,255,0.015)' fill-rule='evenodd'/%3E%3C/svg%3E");
-}
-
-/* Minimalist scrollbar */
+/* Minimalist scrollbar (macOS inspired) */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-background-main);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface);
-  border-radius: 3px;
+  background: var(--color-secondary-300);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-500);
+  background: var(--color-secondary-400);
 }
+
+/* Background Pattern (Subtle grid for IBM Quantum look) */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--color-border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
+  background-position: center center;
+}
+

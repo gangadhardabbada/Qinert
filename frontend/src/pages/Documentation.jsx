@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@heroui/react';
 import {
-  ArrowRight, CaretRight, BookOpen, Code,
-  Lock
+  ArrowRight, CaretRight, BookOpen, Lock
 } from '@phosphor-icons/react';
 import { useScrollSpy } from '../hooks/useScrollSpy';
 import FAQAccordion from '../components/shared/FAQAccordion';
@@ -17,18 +16,18 @@ const SIDEBAR_NAV = [
   { id: 'introduction',   label: 'Introduction',            level: 0 },
   { id: 'authentication', label: 'Authentication',          level: 0 },
   { id: 'quantum-basics', label: 'Quantum Basics',          level: 0 },
-  { id: 'bits',           label: 'Bits',                    level: 1 },
-  { id: 'qubits',         label: 'Qubits',                  level: 1 },
-  { id: 'measurement',    label: 'Measurement',             level: 1 },
+  { id: 'bits',           label: 'Classical Bits',          level: 1 },
+  { id: 'qubits',         label: 'Quantum Bits (Qubits)',   level: 1 },
+  { id: 'measurement',    label: 'State Measurement',       level: 1 },
   { id: 'superposition',  label: 'Superposition',           level: 1 },
-  { id: 'bb84',           label: 'BB84 Protocol',           level: 0 },
+  { id: 'bb84',           label: 'The BB84 Protocol',       level: 0 },
   { id: 'qkd',            label: 'Quantum Key Distribution',level: 0 },
-  { id: 'qber',           label: 'QBER',                    level: 0 },
-  { id: 'qiskit',         label: 'Qiskit',                  level: 0 },
-  { id: 'architecture',   label: 'Architecture',            level: 0 },
-  { id: 'roadmap',        label: 'Roadmap',                 level: 0 },
+  { id: 'qber',           label: 'Understanding QBER',      level: 0 },
+  { id: 'qiskit',         label: 'IBM Qiskit Integration',  level: 0 },
+  { id: 'architecture',   label: 'System Architecture',     level: 0 },
+  { id: 'roadmap',        label: 'Project Roadmap',         level: 0 },
   { id: 'api',            label: 'API Reference',           level: 0 },
-  { id: 'faq',            label: 'FAQ',                     level: 0 },
+  { id: 'faq',            label: 'Frequently Asked Questions', level: 0 },
 ];
 
 const SECTION_IDS = SIDEBAR_NAV.map((n) => n.id);
@@ -99,34 +98,34 @@ function Divider() {
 
 const DOC_FAQ = [
   {
-    question: 'Is Qinert production-ready?',
+    question: 'Is the Qinert platform ready for production use?',
     answer:
-      'Qinert is currently in Milestone 1 (frontend) development. Milestone 2 will add the BB84 JavaScript simulation engine and FastAPI backend. Milestone 3 will integrate real IBM Quantum hardware. The platform is not yet production-ready.',
+      'Currently, Qinert serves as a research and educational platform in its first milestone (frontend development). Subsequent milestones will introduce a simulated BB84 backend, followed by integration with genuine IBM Quantum computers. It should not be used for production security yet.',
   },
   {
-    question: 'What quantum hardware does Qinert use?',
+    question: 'Which quantum infrastructure powers Qinert?',
     answer:
-      'Qinert is designed to connect to IBM Quantum Runtime via Qiskit. In Milestone 2, a JavaScript simulation runs in-browser. In Milestone 3, actual IBM superconducting quantum processors will be used for key generation.',
+      'We leverage the Qiskit framework to communicate with IBM Quantum Runtime. While early phases use local browser or server simulations, the final architecture relies on real superconducting qubits.',
   },
   {
-    question: 'Can I use Qinert with my existing app?',
+    question: 'How easy is it to integrate Qinert into my own projects?',
     answer:
-      'The API (Milestone 2+) will expose REST endpoints for integrating quantum authentication into existing applications. The frontend will provide an SDK wrapper once the backend is complete.',
+      'Once the Milestone 2 backend is complete, we will offer REST APIs and a frontend SDK, allowing you to easily add quantum-secured login flows to any existing web or mobile application.',
   },
   {
-    question: 'What is the QBER threshold in Qinert?',
+    question: 'What is the acceptable error rate (QBER) for a secure session?',
     answer:
-      'Qinert applies the standard theoretical BB84 threshold of ~11%. Sessions with QBER at or above this value are aborted. The exact threshold may be adjusted in later milestones based on hardware noise characteristics.',
+      'Following quantum cryptographic standards, Qinert aborts any session where the Quantum Bit Error Rate (QBER) reaches or exceeds 11%. This strict threshold ensures no eavesdropper has intercepted the key.',
   },
   {
-    question: 'Is the source code available?',
+    question: 'Where can I view the source code?',
     answer:
-      'Yes. Qinert is an open-source research project. The frontend code is available on GitHub. Backend and quantum engine code will be published as each milestone is completed.',
+      'Qinert is completely open-source. The repository for the frontend is available on GitHub, and we will open-source the backend engines as they are developed and finalized.',
   },
   {
-    question: 'What is privacy amplification?',
+    question: 'What role does privacy amplification play?',
     answer:
-      'Privacy amplification is a classical post-processing step applied to the sifted BB84 key. A universal hash function compresses the key to remove any partial information a potential eavesdropper may have obtained during transmission. It ensures the final key is information-theoretically secret.',
+      'Privacy amplification acts as a final cryptographic filter. By hashing the sifted key, we compress the data and eliminate any residual knowledge an attacker might have gained from environmental noise or eavesdropping.',
   },
 ];
 
@@ -146,7 +145,6 @@ export default function Documentation() {
 
   return (
     <div className="relative min-h-screen bg-hex-pattern selection:bg-primary-500/20">
-      {/* Ambient glow */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
         <div className="absolute top-0 left-1/4 w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(15,98,254,0.04)_0%,transparent_65%)] rounded-full" />
       </div>
@@ -160,14 +158,13 @@ export default function Documentation() {
           className="mb-10"
         >
           <span className="text-xs font-mono text-text-muted/50 uppercase tracking-[0.2em] mb-3 block">
-            Qinert / Documentation
+            Qinert / Developer Docs
           </span>
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-text-main mb-4">
-            Documentation
+            Platform Documentation
           </h1>
           <p className="text-text-muted text-lg max-w-xl leading-relaxed">
-            Learn how Qinert implements quantum-secure authentication using the BB84 Quantum Key
-            Distribution protocol.
+            Discover the mechanics behind Qinert’s quantum-safe authentication and explore the implementation of the BB84 Quantum Key Distribution standard.
           </p>
         </motion.div>
 
@@ -180,7 +177,7 @@ export default function Documentation() {
             aria-controls="doc-sidebar"
           >
             <BookOpen size={15} aria-hidden="true" />
-            {mobileNavOpen ? 'Hide Contents' : 'Show Contents'}
+            {mobileNavOpen ? 'Close Menu' : 'Open Menu'}
           </button>
           {mobileNavOpen && (
             <nav id="doc-sidebar-mobile" className="mt-3 border border-border-subtle rounded-sm bg-surface/50 p-4">
@@ -208,7 +205,7 @@ export default function Documentation() {
           >
             <div className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto pr-2 scrollbar-thin">
               <p className="text-[10px] font-mono text-text-muted/40 uppercase tracking-[0.18em] mb-4">
-                Contents
+                Table of Contents
               </p>
               <nav>
                 {SIDEBAR_NAV.map((item) => (
@@ -230,16 +227,16 @@ export default function Documentation() {
               </nav>
 
               <div className="mt-8 pt-6 border-t border-border-subtle">
-                <p className="text-[10px] font-mono text-text-muted/40 uppercase tracking-[0.18em] mb-3">Quick links</p>
+                <p className="text-[10px] font-mono text-text-muted/40 uppercase tracking-[0.18em] mb-3">Resources</p>
                 <div className="flex flex-col gap-2">
                   <Link to="/bb84-explorer" className="text-xs text-text-muted hover:text-primary-400 transition-colors flex items-center gap-1.5">
-                    <CaretRight size={11} aria-hidden="true" /> BB84 Explorer
+                    <CaretRight size={11} aria-hidden="true" /> Try BB84 Explorer
                   </Link>
                   <Link to="/authenticate" className="text-xs text-text-muted hover:text-primary-400 transition-colors flex items-center gap-1.5">
-                    <CaretRight size={11} aria-hidden="true" /> Authenticate
+                    <CaretRight size={11} aria-hidden="true" /> Launch App
                   </Link>
                   <a href="https://github.com" className="text-xs text-text-muted hover:text-primary-400 transition-colors flex items-center gap-1.5">
-                    <CaretRight size={11} aria-hidden="true" /> GitHub
+                    <CaretRight size={11} aria-hidden="true" /> Source Code
                   </a>
                 </div>
               </div>
@@ -252,25 +249,18 @@ export default function Documentation() {
             <DocSection id="introduction">
               <DocH1 id="introduction">Introduction</DocH1>
               <DocP>
-                Qinert is an experimental quantum authentication platform that demonstrates secure
-                identity verification using the <strong className="text-text-main">BB84 Quantum Key Distribution</strong> protocol.
-                It is designed as a research and educational tool showing how quantum mechanics can
-                replace classical cryptographic assumptions with physical security guarantees.
+                Welcome to Qinert. This platform serves as a modern testbed for quantum cryptography,
+                demonstrating how digital identities can be secured using the <strong className="text-text-main">BB84 Quantum Key Distribution</strong> protocol. 
+                Our goal is to showcase the practical transition from math-based cryptography to physics-based security guarantees.
               </DocP>
               <DocP>
-                Unlike traditional authentication systems that rely on the computational hardness
-                of problems like integer factorization, Qinert's security is grounded in the{' '}
-                <em>laws of physics</em> — specifically the Heisenberg uncertainty principle and
-                the quantum no-cloning theorem.
+                Unlike modern encryption standard which are susceptible to factorization by Shor's algorithm, Qinert leverages the unalterable laws of quantum physics. We rely on the fundamental impossibility of copying quantum states to guarantee that keys are never intercepted.
               </DocP>
-              <Callout type="info" title="Research Platform">
-                Qinert is an academic demonstration platform. It is not yet production-ready.
-                Real quantum hardware integration arrives in Milestone 3.
+              <Callout type="info" title="Academic Prototype">
+                Please note that Qinert is an experimental endeavor. Production-grade integration with live IBM quantum hardware is scheduled for Milestone 3.
               </Callout>
               <DocP>
-                The current Milestone 1 release provides a complete frontend for the system. The
-                BB84 Explorer page visually explains the protocol. Milestone 2 adds the JavaScript
-                simulation engine and FastAPI backend. Milestone 3 connects to IBM Quantum Runtime.
+                Currently, Milestone 1 focuses on the frontend user experience and interactive education. Moving forward, Milestone 2 will introduce the core API and a powerful JavaScript BB84 simulator, paving the way for full physical quantum deployment in Milestone 3.
               </DocP>
             </DocSection>
 
@@ -278,25 +268,18 @@ export default function Documentation() {
 
             {/* ────────────── AUTHENTICATION */}
             <DocSection id="authentication">
-              <DocH2 id="authentication">Authentication</DocH2>
+              <DocH2 id="authentication">Authentication Paradigm</DocH2>
               <DocP>
-                Traditional authentication — passwords, OTPs, biometrics — relies on secrets
-                stored or transmitted over classical channels. These are vulnerable to credential
-                theft, man-in-the-middle attacks, and will be broken by sufficiently powerful
-                quantum computers running Grover's or Shor's algorithms.
+                The security models of today (like passwords, biometrics, and OTPs) inherently require a secret to be passed through classical channels. This transit makes credentials prone to interception, theft, or eventual decryption by future quantum supercomputers.
               </DocP>
-              <DocH3>How Qinert Authentication Differs</DocH3>
+              <DocH3>The Qinert Advantage</DocH3>
               <DocP>
-                Qinert generates a fresh authentication key for every session using the BB84
-                protocol. The key is never transmitted — it is <em>established</em> independently
-                by both parties through quantum state measurements. An eavesdropper cannot intercept
-                the key without disturbing the quantum states and triggering a detectable QBER
-                increase.
+                In contrast, Qinert does not transmit your key at all. Instead, it utilizes BB84 to mutually generate a fresh, unique key on both the client and server simultaneously. Any third-party observation immediately disrupts the quantum states, rendering the key invalid and alerting the system to a breach.
               </DocP>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
                 {[
-                  { label: 'Classical Auth', items: ['Password transmitted over TLS', 'Vulnerable to credential theft', 'No eavesdropping detection', 'Key stored on server'], bad: true },
-                  { label: 'Qinert Auth', items: ['Key established via quantum channel', 'Eavesdropping is physically detectable', 'Key never transmitted — only derived', 'Fresh key per session'], bad: false },
+                  { label: 'Legacy Authentication', items: ['Secrets sent over public internet', 'Susceptible to data breaches', 'Eavesdropping goes unnoticed', 'Keys reside in databases'], bad: true },
+                  { label: 'Qinert Authentication', items: ['Keys generated mutually via qubits', 'Physical detection of eavesdroppers', 'Keys are derived, never sent', 'Ephemeral session keys'], bad: false },
                 ].map(({ label, items, bad }) => (
                   <div key={label} className={`p-4 border rounded-sm ${bad ? 'border-red-900/40 bg-red-500/3' : 'border-primary-700/40 bg-primary-500/3'}`}>
                     <p className={`text-xs font-mono font-medium mb-3 ${bad ? 'text-red-400' : 'text-primary-400'}`}>{label}</p>
@@ -319,77 +302,55 @@ export default function Documentation() {
 
             {/* ────────────── QUANTUM BASICS */}
             <DocSection id="quantum-basics">
-              <DocH2 id="quantum-basics">Quantum Basics</DocH2>
+              <DocH2 id="quantum-basics">Core Quantum Concepts</DocH2>
               <DocP>
-                To understand BB84, you need to understand a few core concepts from quantum
-                mechanics. These are not just academic abstractions — they are the physical
-                properties that make quantum cryptography possible.
+                To grasp the mechanics of the BB84 protocol, a foundational understanding of quantum physics is necessary. These principles govern the behavior of subatomic particles and form the unbreakable backbone of quantum encryption.
               </DocP>
             </DocSection>
 
             <DocSection id="bits">
-              <DocH3>Bits</DocH3>
+              <DocH3>Classical Bits</DocH3>
               <DocP>
-                A classical <em>bit</em> is the fundamental unit of classical information. It has
-                exactly two states: <DocCode>0</DocCode> or <DocCode>1</DocCode>. At any given moment
-                a bit is definitively one or the other — there is no ambiguity.
+                The standard bit is the building block of traditional computing, existing firmly as a <DocCode>0</DocCode> or a <DocCode>1</DocCode>. Its state is absolute.
               </DocP>
               <DocP>
-                Classical bits are physical — a capacitor charged or uncharged, a magnetic domain
-                oriented north or south. Reading the bit does not change it. You can copy a bit
-                perfectly. These properties make classical computing predictable but also exploitable.
+                Because classical bits map to macroscopic properties—like electrical charges or magnetism—they can be read infinitely without altering their value. This allows data to be copied perfectly, which is excellent for software, but catastrophic for secure key exchange.
               </DocP>
             </DocSection>
 
             <DocSection id="qubits">
-              <DocH3>Qubits</DocH3>
+              <DocH3>Quantum Bits (Qubits)</DocH3>
               <DocP>
-                A <em>qubit</em> is the quantum analogue of a bit. It can exist in states{' '}
-                <DocCode>|0⟩</DocCode> and <DocCode>|1⟩</DocCode>, but crucially it can also
-                exist in a <em>superposition</em> — a weighted combination of both states
-                simultaneously.
+                A qubit serves as the quantum equivalent of a bit. While it can resolve to <DocCode>|0⟩</DocCode> or <DocCode>|1⟩</DocCode>, it possesses the unique ability to exist in a complex probability wave blending both states.
               </DocP>
               <DocP>
-                In BB84, qubits are implemented as photon polarization states. The four states
-                used are horizontal, vertical, 45°, and 135° polarizations, corresponding to
-                bits encoded in two different bases.
+                Qinert represents qubits through the polarization of light. By polarizing photons either rectilinearly (horizontal/vertical) or diagonally (45°/135°), we encode information across two incompatible measurement bases.
               </DocP>
-              <Callout type="quantum" title="No-Cloning Theorem">
-                It is physically impossible to create a perfect copy of an arbitrary unknown
-                quantum state. This prevents eavesdroppers from copying qubits during transmission
-                — any attempt to measure and re-transmit will introduce detectable errors.
+              <Callout type="quantum" title="The No-Cloning Theorem">
+                Quantum mechanics forbids the creation of an identical copy of an unknown quantum state. This is the ultimate defense against network sniffers: attempting to copy a photon irrevocably changes its state, leaving a clear footprint of the intrusion.
               </Callout>
             </DocSection>
 
             <DocSection id="measurement">
-              <DocH3>Measurement</DocH3>
+              <DocH3>State Measurement</DocH3>
               <DocP>
-                When a qubit in superposition is measured, it <em>collapses</em> to one of its
-                basis states. The measurement outcome is probabilistic and determined by the
-                amplitudes of the superposition. Crucially, measurement permanently destroys the
-                superposition — you cannot "un-measure" a qubit.
+                Observing a qubit forces its wave function to collapse into a definite state. This means that reading quantum data is a destructive process—the delicate superposition is lost forever upon measurement.
               </DocP>
               <DocP>
-                In BB84, if Bob measures a qubit in the same basis Alice used to encode it, he
-                gets the correct bit with certainty. If he uses the wrong basis, he gets a random
-                result. This basis mismatch is the mechanism for the sifting step.
+                During BB84, if the receiving party measures the photon using the correct basis, the original data is accurately retrieved. Choosing the incorrect basis yields a random, unreliable outcome. Comparing these choices later is how secure keys are formed.
               </DocP>
             </DocSection>
 
             <DocSection id="superposition">
               <DocH3>Superposition</DocH3>
               <DocP>
-                Superposition is the quantum mechanical principle that a qubit can exist as a
-                combination of <DocCode>|0⟩</DocCode> and <DocCode>|1⟩</DocCode> until
-                measured. Mathematically, a qubit state is written as:
+                Superposition describes a qubit's capacity to harbor multiple states simultaneously until the moment of measurement. It is represented by the formula:
               </DocP>
               <div className="my-4 p-4 bg-background-main/60 border border-border-subtle rounded-sm font-mono text-center text-primary-300">
                 |ψ⟩ = α|0⟩ + β|1⟩ &nbsp;&nbsp; where |α|² + |β|² = 1
               </div>
               <DocP>
-                The coefficients α and β determine the probability of measuring <DocCode>0</DocCode>{' '}
-                (probability |α|²) or <DocCode>1</DocCode> (probability |β|²). The Hadamard gate
-                creates an equal superposition where each outcome has 50% probability.
+                Here, the squares of the complex amplitudes (α and β) dictate the probability of the qubit collapsing into either state. We frequently use Hadamard gates to create perfect 50/50 superpositions for unbiased randomness.
               </DocP>
             </DocSection>
 
@@ -397,39 +358,36 @@ export default function Documentation() {
 
             {/* ────────────── BB84 */}
             <DocSection id="bb84">
-              <DocH2 id="bb84">BB84 Protocol</DocH2>
+              <DocH2 id="bb84">The BB84 Protocol</DocH2>
               <DocP>
-                BB84, named after its authors Charles H. Bennett and Gilles Brassard and the year
-                of publication (1984), was the first quantum key distribution protocol. It was
-                published while the authors were at IBM Research.
+                Conceived in 1984 by Charles H. Bennett and Gilles Brassard at IBM, the BB84 protocol pioneered the field of quantum cryptography, proposing a theoretical method to securely exchange keys over potentially compromised networks.
               </DocP>
-              <DocH3>The Protocol at a Glance</DocH3>
+              <DocH3>Step-by-Step Overview</DocH3>
               <DocP>
-                BB84 proceeds in two phases: a <em>quantum phase</em> over the quantum channel,
-                and a <em>classical phase</em> over a public authenticated classical channel.
+                The process requires both a quantum channel (for transmitting photons) and an authenticated public channel (for discussing measurement strategies).
               </DocP>
               <ol className="list-none space-y-3 my-6">
                 {[
-                  'Alice generates random bits and random basis choices.',
-                  'Alice encodes each bit as a photon in the chosen basis and transmits.',
-                  'Bob measures each photon in a randomly chosen basis.',
-                  'Alice and Bob compare basis choices publicly (not bit values).',
-                  'They discard mismatched-basis bits — the remainder is the sifted key.',
-                  'A sample is compared to compute QBER.',
-                  'If QBER < 11%, privacy amplification is applied and the key is accepted.',
+                  'Alice creates a random sequence of bits and selects a random basis for each.',
+                  'Alice polarizes a photon according to the bit and basis, then sends it to Bob.',
+                  'Bob blindly selects a random basis to measure the incoming photon.',
+                  'Using a public channel, Alice and Bob announce the bases they used (keeping the bits secret).',
+                  'They keep only the bits where their basis choices happened to match.',
+                  'A subset of these bits is publicly compared to evaluate the error rate (QBER).',
+                  'If the error rate is safe (<11%), they apply privacy amplification to finalize the secure key.',
                 ].map((step, idx) => (
                   <li key={idx} className="flex gap-3 text-sm text-text-muted">
-                    <span className="font-mono text-primary-500 w-5 shrink-0">{idx + 1}.</span>
+                     <span className="font-mono text-primary-500 w-5 shrink-0">{idx + 1}.</span>
                     {step}
                   </li>
                 ))}
               </ol>
-              <Callout type="info" title="Interactive Timeline">
-                The{' '}
+              <Callout type="info" title="Try the Visualizer">
+                For a hands-on learning experience, visit the{' '}
                 <Link to="/bb84-explorer" className="text-primary-400 hover:text-primary-300 underline underline-offset-2">
                   BB84 Explorer
                 </Link>{' '}
-                page provides a step-by-step interactive walkthrough of all nine protocol phases.
+                to simulate the entire transmission lifecycle.
               </Callout>
             </DocSection>
 
@@ -437,27 +395,17 @@ export default function Documentation() {
 
             {/* ────────────── QKD */}
             <DocSection id="qkd">
-              <DocH2 id="qkd">Quantum Key Distribution</DocH2>
+              <DocH2 id="qkd">Understanding Quantum Key Distribution</DocH2>
               <DocP>
-                Quantum Key Distribution (QKD) is a method of securely distributing cryptographic
-                keys using the principles of quantum mechanics. The key insight is that the
-                security of QKD does not rest on computational assumptions (like RSA or ECC) —
-                it rests on physical laws that cannot be circumvented by any computer, classical
-                or quantum.
+                Quantum Key Distribution (QKD) is the broader discipline of utilizing quantum phenomena to establish shared cryptographic secrets. Its most significant trait is providing security grounded in physics rather than mathematical complexity.
               </DocP>
-              <DocH3>Security Guarantees</DocH3>
+              <DocH3>Information-Theoretic Security</DocH3>
               <DocP>
-                QKD provides <em>information-theoretic</em> security, meaning even an adversary
-                with unlimited computational power cannot break it without being detected. This is
-                in contrast to classical cryptographic schemes that are secure only against
-                computationally bounded adversaries.
+                QKD delivers <em>information-theoretic security</em>. This implies that no amount of computational power—not even from an adversary operating a million-qubit quantum computer—can breach the encryption, because the security relies on the laws of nature itself.
               </DocP>
-              <DocH3>Requirements</DocH3>
+              <DocH3>Infrastructure Needs</DocH3>
               <DocP>
-                BB84 QKD requires: (1) a quantum channel — typically optical fiber or free-space
-                optics — for photon transmission, and (2) an authenticated classical channel for
-                basis comparison. The classical channel can be public but must be authenticated
-                to prevent man-in-the-middle attacks.
+                Deploying QKD necessitates a physical medium capable of preserving quantum states (like specialized fiber optic lines) alongside a standard authenticated internet connection to coordinate the sifting and error-checking phases without risk of spoofing.
               </DocP>
             </DocSection>
 
@@ -465,21 +413,19 @@ export default function Documentation() {
 
             {/* ────────────── QBER */}
             <DocSection id="qber">
-              <DocH2 id="qber">QBER — Quantum Bit Error Rate</DocH2>
+              <DocH2 id="qber">Decoding QBER</DocH2>
               <DocP>
-                The Quantum Bit Error Rate (QBER) is the fraction of bits in the sifted key
-                that differ between Alice's and Bob's copies. It is the primary security metric
-                in BB84.
+                The Quantum Bit Error Rate (QBER) measures the discrepancy between Alice's transmitted key and Bob's received key. It acts as the ultimate tripwire for detecting network intrusion.
               </DocP>
               <div className="my-4 p-4 bg-background-main/60 border border-border-subtle rounded-sm font-mono text-center text-primary-300">
-                QBER = (number of error bits) / (total sample bits)
+                QBER = Errors / Total Checked Bits
               </div>
-              <DocH3>Interpreting QBER</DocH3>
+              <DocH3>Evaluating Threat Levels</DocH3>
               <div className="space-y-3 my-4">
                 {[
-                  { range: 'QBER < 11%', meaning: 'Channel considered secure. Apply privacy amplification and proceed.', color: 'text-green-400 bg-green-500/5 border-green-500/20' },
-                  { range: 'QBER ≈ 11%', meaning: 'Borderline — channel noise may be naturally high. Investigate further.', color: 'text-yellow-400 bg-yellow-500/5 border-yellow-500/20' },
-                  { range: 'QBER ≥ 11%', meaning: 'Abort session. Eavesdropper likely present. Key is not secret.', color: 'text-red-400 bg-red-500/5 border-red-500/20' },
+                  { range: 'Below 11%', meaning: 'Transmission clear. Proceed with key distillation and privacy amplification.', color: 'text-green-400 bg-green-500/5 border-green-500/20' },
+                  { range: 'Near 11%', meaning: 'Warning threshold. High environmental interference or sophisticated snooping.', color: 'text-yellow-400 bg-yellow-500/5 border-yellow-500/20' },
+                  { range: 'Above 11%', meaning: 'Compromise detected. Abort the handshake immediately and discard all data.', color: 'text-red-400 bg-red-500/5 border-red-500/20' },
                 ].map(({ range, meaning, color }) => (
                   <div key={range} className={`flex gap-4 p-4 border rounded-sm ${color}`}>
                     <code className="font-mono text-sm font-bold shrink-0 w-28">{range}</code>
@@ -488,10 +434,7 @@ export default function Documentation() {
                 ))}
               </div>
               <DocP>
-                In a noise-free channel with no eavesdropper, the theoretical QBER is 0%. In
-                practice, optical channels introduce some noise, so a small QBER is expected.
-                An eavesdropper using intercept-resend attacks contributes an additional ~25%
-                QBER when measuring every photon — well above the 11% threshold.
+                While a flawless vacuum theoretically yields a 0% QBER, real-world fiber optics introduce minor natural errors. However, because eavesdropping inherently requires unauthorized measurement (which collapses the state), an attacker performing an intercept-resend attack will dramatically spike the QBER by roughly 25%.
               </DocP>
             </DocSection>
 
@@ -499,34 +442,29 @@ export default function Documentation() {
 
             {/* ────────────── QISKIT */}
             <DocSection id="qiskit">
-              <DocH2 id="qiskit">Qiskit</DocH2>
+              <DocH2 id="qiskit">IBM Qiskit Integration</DocH2>
               <DocP>
-                Qiskit is IBM's open-source quantum computing SDK. It allows developers to write
-                quantum circuits in Python, simulate them locally, and execute them on real IBM
-                quantum hardware via IBM Quantum Runtime.
+                We build upon Qiskit, IBM's premiere quantum software development kit. It empowers our backend to compose quantum circuits, simulate probabilistic outcomes, and dispatch jobs directly to cloud-connected quantum hardware.
               </DocP>
               <DocP>
-                Qinert will use Qiskit for two purposes: generating quantum random bits for Alice's
-                bit and basis sequences, and eventually executing the full BB84 circuit on IBM
-                superconducting quantum processors.
+                Qinert utilizes Qiskit primarily for true quantum random number generation (vital for unpredictable basis selection) and to execute the physical BB84 photon polarization sequences.
               </DocP>
               <CodeBlock lang="python">
 {`from qiskit import QuantumCircuit
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-# Generate quantum random bits for BB84 key material
-qc = QuantumCircuit(256, 256)
-qc.h(range(256))  # Hadamard: equal superposition
-qc.measure_all()
+# Initializing a circuit to generate pure quantum entropy
+circuit = QuantumCircuit(256, 256)
+circuit.h(range(256))  # Apply Hadamard gates for superposition
+circuit.measure_all()
 
-# Execute on IBM Quantum (Milestone 3)
+# Dispatch to IBM Quantum infrastructure
 service = QiskitRuntimeService()
-backend = service.least_busy()
-# job = backend.run(qc)  # Uncomment in Milestone 3`}
+qpu = service.least_busy()
+# result = qpu.run(circuit) # Target for M3 deployment`}
               </CodeBlock>
-              <Callout type="warning" title="Milestone 3 Feature">
-                Real Qiskit integration is planned for Milestone 3. Milestone 2 uses a JavaScript
-                simulation engine for in-browser demonstration.
+              <Callout type="warning" title="Hardware Availability">
+                Live IBM QPU execution is slated for Milestone 3. The current iteration operates using advanced browser-side and server-side state simulators.
               </Callout>
             </DocSection>
 
@@ -534,21 +472,18 @@ backend = service.least_busy()
 
             {/* ────────────── ARCHITECTURE */}
             <DocSection id="architecture">
-              <DocH2 id="architecture">Architecture</DocH2>
+              <DocH2 id="architecture">System Architecture</DocH2>
               <DocP>
-                Qinert follows a layered architecture. The frontend communicates with a FastAPI
-                backend, which orchestrates the quantum engine. The quantum engine interfaces
-                with Qiskit for circuit execution and IBM Quantum Runtime for hardware access.
-                Session data and user records are stored in Supabase.
+                Qinert is designed as a highly modular, distributed system. Our React frontend serves as the interactive client, talking to a high-speed FastAPI backend. This backend houses the Quantum Engine, which in turn manages Qiskit jobs and interacts with IBM's APIs, while Supabase handles classical data persistence.
               </DocP>
               <div className="my-8 flex flex-col items-center gap-0">
                 {[
-                  { name: 'React Frontend', sub: 'HeroUI · Framer Motion · React Router', color: '#61DAFB' },
-                  { name: 'FastAPI Backend', sub: 'Python · REST API · WebSocket', color: '#009688' },
-                  { name: 'Quantum Engine', sub: 'BB84 Logic · Key Management · QBER', color: '#8A3FFC' },
-                  { name: 'Qiskit SDK', sub: 'Quantum Circuits · Transpilation', color: '#0F62FE' },
-                  { name: 'IBM Quantum Runtime', sub: 'Real Hardware · Cloud Execution', color: '#33B1FF' },
-                  { name: 'Supabase', sub: 'PostgreSQL · Auth · Real-time', color: '#3ECF8E' },
+                  { name: 'Client Interface (React)', sub: 'HeroUI · Tailwind · Interactive Visualizations', color: '#61DAFB' },
+                  { name: 'Gateway Backend (FastAPI)', sub: 'Python · Asynchronous I/O · WebSockets', color: '#009688' },
+                  { name: 'QKD Logic Engine', sub: 'Protocol State Machine · Error Correction', color: '#8A3FFC' },
+                  { name: 'Qiskit Integration Layer', sub: 'Circuit Orchestration · Cloud Transpilation', color: '#0F62FE' },
+                  { name: 'IBM Quantum Hardware', sub: 'Superconducting Qubits · Real-time Execution', color: '#33B1FF' },
+                  { name: 'Supabase Data Store', sub: 'Postgres DB · Analytics · User Records', color: '#3ECF8E' },
                 ].map((layer, idx) => (
                   <div key={idx} className="flex flex-col items-center w-full max-w-sm">
                     <div className="w-full border border-border-subtle rounded-sm px-6 py-4 bg-surface/30 text-center hover:border-primary-700/40 transition-colors">
@@ -570,28 +505,28 @@ backend = service.least_busy()
 
             {/* ────────────── ROADMAP */}
             <DocSection id="roadmap">
-              <DocH2 id="roadmap">Roadmap</DocH2>
+              <DocH2 id="roadmap">Project Roadmap</DocH2>
               <div className="space-y-4">
                 {[
                   {
-                    milestone: 'M1', title: 'Frontend Foundation',
+                    milestone: 'M1', title: 'Interactive Frontend',
                     status: 'In Progress', statusColor: 'text-primary-400 bg-primary-500/10 border-primary-500/20',
-                    items: ['Complete React frontend', 'BB84 Explorer', 'Documentation portal', 'About page'],
+                    items: ['Build React foundations', 'Interactive BB84 Explorer', 'Extensive technical docs', 'Landing pages'],
                   },
                   {
-                    milestone: 'M2', title: 'Simulation Engine + Backend',
+                    milestone: 'M2', title: 'Backend & Simulation',
                     status: 'Planned', statusColor: 'text-text-muted/70 bg-surface border-border-subtle',
-                    items: ['JavaScript BB84 simulation', 'FastAPI REST API', 'Supabase integration', 'Live QBER display'],
+                    items: ['FastAPI REST gateway', 'In-memory BB84 simulator', 'Database schema modeling', 'Real-time telemetry'],
                   },
                   {
-                    milestone: 'M3', title: 'Quantum Hardware',
+                    milestone: 'M3', title: 'Hardware Integration',
                     status: 'Planned', statusColor: 'text-text-muted/70 bg-surface border-border-subtle',
-                    items: ['Qiskit circuit integration', 'IBM Quantum Runtime', 'Real hardware key generation', 'End-to-end demo'],
+                    items: ['IBM Quantum Runtime connection', 'Hardware key generation', 'Latency optimization', 'Live deployment'],
                   },
                   {
-                    milestone: 'M4', title: 'Production Readiness',
+                    milestone: 'M4', title: 'Ecosystem Growth',
                     status: 'Future', statusColor: 'text-text-muted/50 bg-surface border-border-subtle',
-                    items: ['SDK for external apps', 'Performance optimization', 'Security audit', 'Open source release'],
+                    items: ['Developer SDKs', 'Third-party integrations', 'External security auditing', 'Whitepaper release'],
                   },
                 ].map(({ milestone, title, status, statusColor, items }) => (
                   <div key={milestone} className="border border-border-subtle rounded-sm p-6 bg-surface/10">
@@ -626,20 +561,19 @@ backend = service.least_busy()
                 <DocH2 id="api">API Reference</DocH2>
                 <Badge variant="coming">
                   <Lock size={9} aria-hidden="true" />
-                  Milestone 2
+                  Expected in M2
                 </Badge>
               </div>
               <DocP>
-                The REST API will be available in Milestone 2. Endpoints will cover session
-                initialization, QBER retrieval, key confirmation, and authentication token issuance.
+                The Qinert REST API allows seamless management of the quantum handshake lifecycle. The endpoints below provide complete control over generating, verifying, and concluding BB84 authentication sessions.
               </DocP>
               <div className="space-y-3 my-6">
                 {[
-                  { method: 'POST', path: '/api/v1/session/init', desc: 'Initialize a new BB84 authentication session' },
-                  { method: 'GET',  path: '/api/v1/session/{id}/qber', desc: 'Retrieve the calculated QBER for a session' },
-                  { method: 'POST', path: '/api/v1/session/{id}/confirm', desc: 'Confirm key and request authentication token' },
-                  { method: 'POST', path: '/api/v1/session/{id}/abort', desc: 'Abort session due to high QBER or timeout' },
-                  { method: 'GET',  path: '/api/v1/health', desc: 'Backend health check and quantum engine status' },
+                  { method: 'POST', path: '/api/v1/auth/session/initiate', desc: 'Starts a new BB84 key generation sequence.' },
+                  { method: 'GET',  path: '/api/v1/auth/session/{id}/metrics', desc: 'Polls the current QBER and entanglement status.' },
+                  { method: 'POST', path: '/api/v1/auth/session/{id}/finalize', desc: 'Validates the key and issues the JWT token.' },
+                  { method: 'POST', path: '/api/v1/auth/session/{id}/terminate', desc: 'Kills the session forcefully if security thresholds fail.' },
+                  { method: 'GET',  path: '/api/v1/system/health', desc: 'Pings the backend and verifies IBM QPU connectivity.' },
                 ].map(({ method, path, desc }) => (
                   <div key={path} className="flex items-start gap-4 p-4 border border-border-subtle rounded-sm bg-background-main/30">
                     <span className={`font-mono text-xs font-bold px-2 py-0.5 rounded-sm shrink-0 ${
@@ -654,8 +588,8 @@ backend = service.least_busy()
                   </div>
                 ))}
               </div>
-              <Callout type="warning" title="API Not Yet Available">
-                These endpoints are planned for Milestone 2. The FastAPI backend does not yet exist.
+              <Callout type="warning" title="API Status: Pending">
+                These routes are actively in development for Milestone 2. Documentation schemas are subject to change.
               </Callout>
             </DocSection>
 
@@ -663,15 +597,15 @@ backend = service.least_busy()
 
             {/* ────────────── FAQ */}
             <DocSection id="faq">
-              <DocH2 id="faq">FAQ</DocH2>
+              <DocH2 id="faq">Frequently Asked Questions</DocH2>
               <FAQAccordion items={DOC_FAQ} />
             </DocSection>
 
             {/* Bottom CTA */}
             <div className="mt-16 pt-12 border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div>
-                <p className="font-medium text-text-main mb-1">Explore the protocol interactively</p>
-                <p className="text-sm text-text-muted">Walk through each BB84 step on the explorer page.</p>
+                <p className="font-medium text-text-main mb-1">Experience the Quantum Exchange</p>
+                <p className="text-sm text-text-muted">Explore our interactive module to visualize every step of the BB84 protocol.</p>
               </div>
               <div className="flex gap-3 flex-wrap">
                 <Button
@@ -681,7 +615,7 @@ backend = service.least_busy()
                   size="sm"
                   className="border-border-subtle text-text-muted hover:text-text-main rounded-sm font-medium"
                 >
-                  BB84 Explorer
+                  Interactive Visualizer
                 </Button>
                 <Button
                   as={Link}
@@ -690,7 +624,7 @@ backend = service.least_busy()
                   className="bg-primary-500 hover:bg-primary-400 text-white rounded-sm font-medium"
                   endContent={<ArrowRight size={13} aria-hidden="true" />}
                 >
-                  Start Authentication
+                  Launch App
                 </Button>
               </div>
             </div>

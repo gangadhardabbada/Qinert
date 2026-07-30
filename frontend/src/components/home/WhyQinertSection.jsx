@@ -8,7 +8,7 @@ export default function WhyQinertSection() {
   const features = [
     {
       icon: <Shield size={24} className="text-primary-400" />,
-      title: "Quantum Authentication",
+      title: "Qonsole",
       description: "Authenticate using BB84 Quantum Key Distribution for unbreakable identity verification."
     },
     {

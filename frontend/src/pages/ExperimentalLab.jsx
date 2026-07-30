@@ -13,7 +13,7 @@ export default function ExperimentalLab() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const qinert = React.useMemo(() => new QinertClient({ baseURL: getApiBaseUrl() }), []);
+  const qinert = React.useMemo(() => new QinertClient({ baseURL: getApiBaseUrl(), timeout: 30000 }), []);
 
   const startExperiment = async () => {
     setLoading(true);
@@ -25,9 +25,10 @@ export default function ExperimentalLab() {
         number_of_bits: parseInt(bits),
         shots: parseInt(shots)
       });
-      setExperimentId(res.payload.experiment_id);
+      setExperimentId(res.experiment_id);
     } catch (err) {
-      setError(err.message || 'Failed to start experiment');
+      const backendError = err.response?.data?.detail || err.message;
+      setError(`Unable to create experiment. Backend returned: ${backendError}`);
       setLoading(false);
     }
   };
@@ -39,11 +40,11 @@ export default function ExperimentalLab() {
     const fetchStatus = async () => {
       try {
         const data = await qinert.getExperimentComparison(experimentId);
-        setComparison(data.payload);
+        setComparison(data);
         
         // Check if finished
-        const engines = Object.values(data.payload.engines);
-        const isFinished = engines.every(e => e.status === 'COMPLETED' || e.status === 'FAILED');
+        const engines = Object.values(data.engines || {});
+        const isFinished = engines.length > 0 && engines.every(e => e.status === 'COMPLETED' || e.status === 'FAILED');
         
         if (isFinished) {
           clearInterval(interval);
@@ -51,6 +52,7 @@ export default function ExperimentalLab() {
         }
       } catch (err) {
         console.error("Failed to fetch experiment status:", err);
+        setError("Unable to fetch experiment status. Check if backend is running.");
       }
     };
 
@@ -113,6 +115,12 @@ export default function ExperimentalLab() {
               </span>
             </div>
 
+            {data.backend === 'fake_manila' && !data.error_message && (
+              <div className="mt-4 p-3 rounded-sm bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs font-mono">
+                IBM Quantum Runtime unavailable. Running simulator instead.
+              </div>
+            )}
+            
             {data.error_message && (
               <div className="mt-4 p-3 rounded-sm bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-mono">
                 {data.error_message}

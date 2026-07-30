@@ -21,7 +21,7 @@ export default function CTASection() {
         >
           Ready to Build with <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-accent-400">
-            Quantum Authentication?
+            Qonsole?
           </span>
         </motion.h2>
         

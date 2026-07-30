@@ -20,6 +20,14 @@ class Settings(BaseSettings):
 
     # Database
     DATABASE_URL: str = "postgresql+psycopg://user:password@localhost/dbname"
+    
+
+    # Mailjet Configuration
+    DEBUG: bool = False
+    MAILJET_API_KEY: str = ""
+    MAILJET_SECRET_KEY: str = ""
+    MAILJET_FROM_EMAIL: str = "gangadhardabbada@gmail.com"
+    MAILJET_FROM_NAME: str = "Qonsole of Qinert"
 
     model_config = SettingsConfigDict(
         env_file=".env",
