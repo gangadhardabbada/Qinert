@@ -1,9 +1,8 @@
 # Qinert
-**Quantum-Resistant Authentication for the Modern Web**
+**Quantum Tech-Integrated Authentication for the Modern Web Applications**
 
 Qinert leverages BB84 Quantum Key Distribution principles to ensure eavesdropping-proof authentication mechanisms.
 
-## Aesthetic & Design
 Qinert features a macOS and IBM Quantum inspired aesthetic, focusing on structural layouts, deep contrast, monospaced data highlights, and glassmorphic panels for a seamless developer experience.
 
 ## Screenshots
